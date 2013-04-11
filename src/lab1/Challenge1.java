@@ -19,24 +19,28 @@ public class Challenge1 {
 
     public static void main(String[] args) {
         Challenge1 app = new Challenge1();
-        try {
+        String lastName = null;
+        do { 
+             try {
             String fullName = JOptionPane.showInputDialog("Enter full name:");
-            String lastName = app.extractLastName(fullName);
+            lastName = app.extractLastName(fullName);
             String msg = "Your last name is: " + lastName;
             JOptionPane.showMessageDialog(null, msg);
         } catch (IllegalArgumentException e) {
-            JOptionPane.showMessageDialog(null, "Please try again\n " 
+            JOptionPane.showMessageDialog(null, "Please try again\n "
                     + e.getMessage());
         }
+            
+        } while (lastName == null || lastName.length() == 0);
 
     }
 
-    public String extractLastName(String fullName) throws IllegalArgumentException{
-        if (fullName.length() == 0){
+    public String extractLastName(String fullName) throws IllegalArgumentException {
+        if (fullName.length() == 0) {
             throw new IllegalArgumentException("You must enter a first and last "
                     + "name with a space in between");
         }
-        
+
         String[] nameParts = fullName.split(" ");
         return nameParts[LAST_NAME_IDX];
     }
